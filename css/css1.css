@@ -1,0 +1,17 @@
+body {
+	background: url("../images/home/bg.gif");
+}
+table.plain_white {
+	font-family:verdana,tahoma,arial;
+	font-size:12px;
+	color:#ffffff;
+	text-decoration:none;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:0px;
+	background: #003366;
+	border-bottom: 1px solid #FF66CC;
+	border-right: 1px solid #FF66CC;
+	border-left: 1px solid #FF66CC;
+	border-top: 1px solid #FF66CC;
+}

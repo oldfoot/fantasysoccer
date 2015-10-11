@@ -1,0 +1,29 @@
+See The Beast
+Macintosh & Windows TrueType.
+
+Do you s(h)ee the beast, do you have him in your s(h)ites...
+
+...This font came about as a result of watching 'Trainspotting' one Night. Enjoy!
+
+Not firing all cylinders . . .
+Uppercase & Lowercase chars are all caps. Numbers 0-9 and no punctuation.
+Some chars in the Lowercase set are at slightly different angles to the Uppercase, thus giving a more random element to the font as not to make it look "typeset" when two similar chars are used together. Best used at high point sizes above 36pt.
+
+Installation . . .
+Easy. For Macintosh, just drag the suitcase to the System folder and that's it. Windows users, copy the .TTF file to C:\Windows\Fonts folder and I think thats it. 
+
+Licence! We don' need no steenking licence!!!
+1. This font is completely and utterly free (although donations greatly received), you can use it in any way you see fit. email me though if you use it for something useful.
+2. Please keep this archive intact along with this readme file.
+3. And if you want to put these onto a magazine floppy, CD-Rom, Website, go ahead, as long as you follow (1,2).
+
+One last thing . . . 
+Because when you double click the SeeTheBeast (Mac) file in the suitcase it only previews up to 18pt. And this is no way to see the font at it’s best (unless you install it of course!). I've also included a sample GIF as well (Mac & Windows).
+
+Paul Reid,
+July '98.
+
+email: whoami@btinternet.com 
+Site: http://www.btinternet.com/~whoami
+
+"You don't scare me, Wiggum. That could be anyone's ass" - Diamond Joe Quimby
