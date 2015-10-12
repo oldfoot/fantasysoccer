@@ -1,6 +1,7 @@
 <?php
 /* THIS ENSURES WE ARE ABLE TO CONTROL OUR INCLUDE FILES */
-define( '_VALID_SSTARS_', 1 );
+define( '_VALID_DIR_', 1 );
+
 require_once "config.php";
 
 require_once $dr."include/functions/design/top_menu_items.php";
@@ -23,11 +24,11 @@ function Body() {
 
 	GLOBAL $dr,$ui;
 
-	if ($_GET['msg']) {
+	if (ISSET($_GET['msg'])) {
 		require_once $dr."/include/functions/misc/error_msgs.php";
 		ErrorMessages(DataEscape($_GET['msg']));
 	}
-	$c.="<table width='749' cellpadding='0' cellspacing='0' class='plain'>\n";
+	$c="<table width='749' cellpadding='0' cellspacing='0' class='plain'>\n";
 		if (ISSET($_GET['module']) && file_exists($dr."/modules/".$_GET['module']."/images/logo.jpg")) {
 			$c.="<tr>\n";
 				$c.="<td><img src='modules/".$_GET['module']."/images/logo.jpg'></td>\n";
@@ -51,7 +52,7 @@ function Body() {
 			$c.="<td valign='top'>";
 			if (!ISSET($_SESSION['user_id'])) {
 				
-				if ($_GET['module']=="signup") {
+				if (ISSET($_GET['module']) && $_GET['module']=="signup") {
 					$module_file=$dr."modules/signup.php";
 					if (file_exists($module_file)) {
 						require_once $module_file;
@@ -67,7 +68,7 @@ function Body() {
 				}
 			}
 			else {
-				$module_file=$dr."modules/".$_GET['module'].".php";
+				$module_file=$GLOBALS['dr']."modules/".$_GET['module'].".php";
 				if (file_exists($module_file)) {
 					require_once $module_file;
 					$c.=LoadModule();

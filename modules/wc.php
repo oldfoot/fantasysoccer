@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once $GLOBALS['dr']."include/functions/db/count_rows.php";
 
@@ -29,7 +29,7 @@ function LoadModule() {
 			/* THIS IS WHERE THE MAIN CONTENT GOES */
 			$c.="<td width='90%' valign='top'>\n";
 			if (ISSET($_GET['task'])) {
-				$task_file=$dr."modules/wc/modules/".$_GET['task'].".php";
+				$task_file=$GLOBALS['dr']."modules/wc/modules/".$_GET['task'].".php";
 				if (file_exists($task_file)) {
 					require_once($task_file);
 					$c.=LoadTask();

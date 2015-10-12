@@ -47,7 +47,7 @@ class PositionID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT position_name
-					FROM ".$GLOBALS['mysql_db']."position_master
+					FROM ".$GLOBALS['database_ref']."position_master
 					WHERE position_id = '".$this->position_id."'
 					";
 		//echo $sql."<br>";
@@ -76,7 +76,7 @@ class PositionID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."position_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."position_master
 					(position_name)
 					VALUES (
 					'".$this->position_name."'
@@ -106,7 +106,7 @@ class PositionID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."position_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."position_master
 					SET position_name = '".$this->position_name."'
 					WHERE position_id = ".$this->position_id."
 					";
@@ -130,7 +130,7 @@ class PositionID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."position_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."position_master
 					WHERE position_id = ".$this->position_id."
 					";
 		//echo $sql;

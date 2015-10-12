@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once $GLOBALS['dr']."include/functions/db/count_rows.php";
 require_once $GLOBALS['dr']."modules/wc/classes/user_team.php";
@@ -75,7 +75,7 @@ function LoadTask() {
 	$tab_array=array("browse","add");
 	$tb=new TabBoxes;
 
-	$c.=$tb->DrawBoxes($tab_array,$dr."modules/wc/modules/my_team/");
+	$c.=$tb->DrawBoxes($tab_array,$GLOBALS['dr']."modules/wc/modules/my_team/");
 
 	if (ISSET($_GET['jshow'])) {
 		$c.=$tb->BlockShow(EscapeData($_GET['jshow']));

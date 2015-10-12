@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function TopMenuItems($name,$img,$sel=False,$url="") {
 	if ($sel) { $tb_bgcol="E4E9F4"; } else { $tb_bgcol="ffffff"; }

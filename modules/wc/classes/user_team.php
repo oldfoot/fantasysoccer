@@ -11,6 +11,10 @@ require_once $GLOBALS['dr']."modules/wc/classes/player_id.php";
 
 class UserTeam {
 
+	public function __construct() {
+		$this->errors = "";
+	}
+
 	/* THIS FUNCTION ALLOWS US TO SET VARIABLES DYNAMICALLY*/
 	public function SetVariable($var,$value) {
 		//echo $var." = ".$value."<br>";
@@ -52,7 +56,7 @@ class UserTeam {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT position_location
-					FROM ".$GLOBALS['mysql_db']."user_team
+					FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND player_id = '".$this->player_id."'
 					AND fixture_type_id = '".$this->fixture_type_id."'
@@ -72,7 +76,7 @@ class UserTeam {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT player_id
-					FROM ".$GLOBALS['mysql_db']."user_team
+					FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = '".$this->fixture_type_id."'
 					AND position_location = '".$p_pos."'
@@ -114,7 +118,7 @@ class UserTeam {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_team
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."user_team
 					(user_id,player_id,fixture_type_id,position_location)
 					VALUES (
 					".$_SESSION['user_id'].",
@@ -126,7 +130,7 @@ class UserTeam {
 		$result=$db->Query($sql);
 		if ($db->AffectedRows($result) > 0) {
 			//LogHistory($this->team_name." added");
-			$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_team_change_log
+			$sql="INSERT INTO ".$GLOBALS['database_ref']."user_team_change_log
 						(user_id,player_id,fixture_type_id,status)
 						VALUES (
 						".$_SESSION['user_id'].",
@@ -162,7 +166,7 @@ class UserTeam {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."team_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."team_master
 					SET team_name = '".$this->team_name."'
 					WHERE player_id = ".$this->player_id."
 					";
@@ -186,7 +190,7 @@ class UserTeam {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."user_team
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND player_id = ".$this->player_id."
 					AND fixture_type_id = ".$this->fixture_type_id."
@@ -195,7 +199,7 @@ class UserTeam {
 		$result=$db->Query($sql);
 		if ($db->AffectedRows($result) > 0) {
 			/* RECORD THE DROP */
-			$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_team_change_log
+			$sql="INSERT INTO ".$GLOBALS['database_ref']."user_team_change_log
 						(user_id,player_id,fixture_type_id,status)
 						VALUES (
 						".$_SESSION['user_id'].",
@@ -249,7 +253,7 @@ class UserTeam {
 		/* COUNT HOW MANY MOVES THE USER HAS DONE IN THE CURRENT STAGE */
 		$db=$GLOBALS['db'];
 		$sql="SELECT count(*) as total
-					FROM ".$GLOBALS['mysql_db']."user_team_change_log
+					FROM ".$GLOBALS['database_ref']."user_team_change_log
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = '".$this->fixture_type_id."'
 					AND status = 'add'
@@ -273,7 +277,7 @@ class UserTeam {
 		/* COUNT HOW MANY PLAYERS FROM THE COUNTRY THE USER HAS IN THE CURRENT STAGE */
 		$db=$GLOBALS['db'];
 		$sql="SELECT count(*) as total
-					FROM ".$GLOBALS['mysql_db']."user_team ut, ".$GLOBALS['mysql_db']."player_master pm
+					FROM ".$GLOBALS['database_ref']."user_team ut, ".$GLOBALS['database_ref']."player_master pm
 					WHERE ut.user_id = ".$_SESSION['user_id']."
 					AND ut.fixture_type_id = ".$fixture_type_id."
 					AND ut.player_id = pm.player_id
@@ -298,8 +302,8 @@ class UserTeam {
 		/* COUNT HOW MANY PLAYERS FROM THE COUNTRY THE USER HAS IN THE CURRENT STAGE */
 		$db=$GLOBALS['db'];
 		$sql="SELECT count(*) as total
-					FROM ".$GLOBALS['mysql_db']."user_team ut, ".$GLOBALS['mysql_db']."player_master pm,
-					".$GLOBALS['mysql_db']."position_master pom
+					FROM ".$GLOBALS['database_ref']."user_team ut, ".$GLOBALS['database_ref']."player_master pm,
+					".$GLOBALS['database_ref']."position_master pom
 					WHERE ut.user_id = '".$_SESSION['user_id']."'
 					AND ut.fixture_type_id = ".$fixture_type_id."
 					AND ut.player_id = pm.player_id
@@ -331,7 +335,7 @@ class UserTeam {
 
 		$db=$GLOBALS['db'];
 		$sql="SELECT user_id,player_id,position_location
-					FROM ".$GLOBALS['mysql_db']."user_team
+					FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = '".($this->fixture_type_id-1)."'
 					";
@@ -339,7 +343,7 @@ class UserTeam {
 		$result = $db->Query($sql);
 		if ($db->NumRows($result) > 0) {
 			while($row = $db->FetchArray($result)) {
-				$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_team (user_id,player_id,fixture_type_id,position_location)
+				$sql="INSERT INTO ".$GLOBALS['database_ref']."user_team (user_id,player_id,fixture_type_id,position_location)
 							VALUES (
 							'".$row['user_id']."',
 							'".$row['player_id']."',
@@ -359,7 +363,7 @@ class UserTeam {
 		if (EMPTY($this->fixture_type_id) || !IS_NUMERIC($this->fixture_type_id)) { $this->Errors("Fixture cannot be empty!"); return False; }
 
 		/* DELETE ALL THE CURRENT SELECTIONS */
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."user_team
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = '".$this->fixture_type_id."'
 					";
@@ -367,7 +371,7 @@ class UserTeam {
 		$result = $db->Query($sql);
 
 		/* DELETE THE LOG */
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."user_team_change_log
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."user_team_change_log
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = '".$this->fixture_type_id."'
 					";
@@ -376,7 +380,7 @@ class UserTeam {
 
 		/* RESTORE THE PREVIOUS ONES */
 		$sql="SELECT user_id,player_id,position_location
-					FROM ".$GLOBALS['mysql_db']."user_team
+					FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = '".($this->fixture_type_id-1)."'
 					";
@@ -384,7 +388,7 @@ class UserTeam {
 		$result = $db->Query($sql);
 		if ($db->NumRows($result) > 0) {
 			while($row = $db->FetchArray($result)) {
-				$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_team (user_id,player_id,fixture_type_id,position_location)
+				$sql="INSERT INTO ".$GLOBALS['database_ref']."user_team (user_id,player_id,fixture_type_id,position_location)
 							VALUES (
 							'".$row['user_id']."',
 							'".$row['player_id']."',
@@ -400,7 +404,7 @@ class UserTeam {
 
 	public function UpdateUserMasterFixtureID() {
 	  $db=$GLOBALS['db'];
-	  $sql="UPDATE ".$GLOBALS['mysql_db']."user_master
+	  $sql="UPDATE ".$GLOBALS['database_ref']."user_master
 	  		SET fixture_type_id_last_login = ".$this->fixture_type_id."
 	  		WHERE user_id = ".$_SESSION['user_id']."
 	  		";

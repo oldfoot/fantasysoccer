@@ -8,7 +8,11 @@ require_once $GLOBALS['dr']."include/functions/db/row_exists.php";
 require_once $GLOBALS['dr']."modules/wc/classes/fixture_type_id.php";
 
 class UserPredictions {
-
+	
+	public function __construct() {
+		$this->errors = "";
+	}
+	
 	/* THIS FUNCTION ALLOWS US TO SET VARIABLES DYNAMICALLY*/
 	public function SetVariable($var,$value) {
 		//echo $var." = ".$value."<br>";
@@ -51,7 +55,7 @@ class UserPredictions {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT position_location
-					FROM ".$GLOBALS['mysql_db']."user_team
+					FROM ".$GLOBALS['database_ref']."user_team
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND team_id = '".$this->team_id."'
 					AND fixture_type_id = '".$this->fixture_type_id."'
@@ -75,7 +79,7 @@ class UserPredictions {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT tm.team_id,tm.team_name,tm.logo_location
-					FROM ".$GLOBALS['mysql_db']."user_predictions up, ".$GLOBALS['mysql_db']."team_master tm
+					FROM ".$GLOBALS['database_ref']."user_predictions up, ".$GLOBALS['database_ref']."team_master tm
 					WHERE up.user_id = ".$_SESSION['user_id']."
 					AND up.fixture_type_id = '".$p_fixture_type_id."'
 					AND up.team_id = tm.team_id
@@ -112,7 +116,7 @@ class UserPredictions {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_predictions
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."user_predictions
 					(user_id,team_id,fixture_type_id)
 					VALUES (
 					".$_SESSION['user_id'].",
@@ -143,7 +147,7 @@ class UserPredictions {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."team_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."team_master
 					SET team_name = '".$this->team_name."'
 					WHERE team_id = ".$this->team_id."
 					";
@@ -166,7 +170,7 @@ class UserPredictions {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."user_predictions
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."user_predictions
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND team_id = ".$this->team_id."
 					AND fixture_type_id = ".$this->fixture_type_id."
@@ -187,7 +191,7 @@ class UserPredictions {
 		/* COUNT HOW MANY PREDICTIONS THE USER HAS IN THE CURRENT STAGE */
 		$db=$GLOBALS['db'];
 		$sql="SELECT count(*) as total
-					FROM ".$GLOBALS['mysql_db']."user_predictions up
+					FROM ".$GLOBALS['database_ref']."user_predictions up
 					WHERE user_id = ".$_SESSION['user_id']."
 					AND fixture_type_id = ".$this->fixture_type_id."
 					";

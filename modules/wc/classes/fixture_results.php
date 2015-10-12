@@ -52,7 +52,7 @@ class FixtureResults {
 		if (!$this->parameter_check) {$this->Errors("Parameter check failed."); return False; }
 		
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."fixture_master SET
+		$sql="UPDATE ".$GLOBALS['database_ref']."fixture_master SET
 					goals_team_1 = ".$this->goals_team_1.",
 					goals_team_2 = ".$this->goals_team_2.",
 					yellow_cards_team_1 = ".$this->yellow_cards_team_1.",
@@ -93,7 +93,7 @@ class FixtureResults {
 		
 		/* LOOP ALL THE USERS WHO HAVE THIS PLAYER IN THIS STAGE */
 		$sql="SELECT user_id
-					FROM ".$GLOBALS['mysql_db']."user_team
+					FROM ".$GLOBALS['database_ref']."user_team
 					WHERE player_id = ".$player_id."
 					AND fixture_type_id = '".$this->fixture_type_id."'
 					";
@@ -101,7 +101,7 @@ class FixtureResults {
 		$result = $db->Query($sql);
 		if ($db->NumRows($result) > 0) {
 			while($row = $db->FetchArray($result)) {
-				$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_points (user_id,points,description,points_type,fixture_id,fixture_type_id)
+				$sql="INSERT INTO ".$GLOBALS['database_ref']."user_points (user_id,points,description,points_type,fixture_id,fixture_type_id)
 							VALUES (
 							'".$row['user_id']."',
 							'".$points."',

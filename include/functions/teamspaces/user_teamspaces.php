@@ -1,11 +1,11 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function UserTeamSpaces($workspace_id,$uid,$pos="horizontal") {
 	$db=$GLOBALS['db'];
 	$sql="SELECT tm.teamspace_id, tm.name, tm.icon
-				FROM ".$GLOBALS['mysql_db']."teamspace_master tm, ".$GLOBALS['mysql_db']."teamspace_users tu
+				FROM ".$GLOBALS['database_ref']."teamspace_master tm, ".$GLOBALS['database_ref']."teamspace_users tu
 				WHERE tm.workspace_id = '".$workspace_id."'
 				AND tm.teamspace_id = tu.teamspace_id
 				AND tu.user_id = '".$uid."'

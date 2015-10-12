@@ -1,11 +1,11 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function LogSite() {
 	/* ADD */
 	$db=$GLOBALS['db'];
-	$sql="INSERT INTO ".$GLOBALS['mysql_db']."logging
+	$sql="INSERT INTO ".$GLOBALS['database_name'].$GLOBALS['database_prefix']."logging
 				(url,date_hit,session_id,user_id)
 				VALUES (
 				'".$_SERVER['QUERY_STRING']."',

@@ -1,16 +1,16 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once($GLOBALS['dr']."classes/form/show_results.php");
-require_once $dr."include/functions/date_time/timestamptz_to_friendly.php";
+require_once $GLOBALS['dr']."include/functions/date_time/timestamptz_to_friendly.php";
 
 function BrowseChat() {
 
 	$db=$GLOBALS['db'];
 
 	$sql="SELECT c.message, um.team_name, c.date_sent
-				FROM ".$GLOBALS['mysql_db']."chat c, ".$GLOBALS['mysql_db']."user_master um
+				FROM ".$GLOBALS['database_ref']."chat c, ".$GLOBALS['database_ref']."user_master um
 				WHERE c.user_id = um.user_id
 				ORDER BY chat_id DESC LIMIT 20
 				";
@@ -46,7 +46,7 @@ function BrowseChat() {
 	//$sr->DrawFriendlyColHead(array("","Fixture Name","Start","End","Allow Prediction","Total Predictions","Edit","Delete")); /* COLS */
 	$sr->Columns(array("message","team_name","date_sent"));
 	$sr->Query("SELECT c.message, um.team_name, c.date_sent
-							FROM ".$GLOBALS['mysql_db']."chat c, ".$GLOBALS['mysql_db']."user_master um
+							FROM ".$GLOBALS['database_ref']."chat c, ".$GLOBALS['database_ref']."user_master um
 							WHERE c.user_id = um.user_id
 							ORDER BY date_sent DESC LIMIT 20");
 	for ($i=0;$i<$sr->CountRows();$i++) {

@@ -24,7 +24,7 @@ class WCSetup{
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT site_title, date_close_predictions, team_setup, max_players_per_country
-					FROM ".$GLOBALS['mysql_db']."setup
+					FROM ".$GLOBALS['database_ref']."setup
 					WHERE id = 1
 					";
 		//echo $sql."<br>";
@@ -48,7 +48,7 @@ class WCSetup{
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT fixture_type_id, type_name
-					FROM ".$GLOBALS['mysql_db']."fixture_type_master
+					FROM ".$GLOBALS['database_ref']."fixture_type_master
 					WHERE date_start <= sysdate()
 					AND date_end >= sysdate()
 					";
@@ -67,7 +67,10 @@ class WCSetup{
 
 	/* GET ANY OF THE VARIABLES IN THE CLASS */
 	public function GetInfo($v) {
-		return $this->$v;
+		if (ISSET($this->$v)) {
+			return $this->$v;
+		}
+		return false;
 	}
 
 	/* DRAW A NICE BOX WITH THE INFO */

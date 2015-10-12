@@ -6,7 +6,11 @@
 require_once $GLOBALS['dr']."include/functions/db/row_exists.php";
 
 class NewUser {
-
+	
+	public function __construct() {
+		$this->errors = "";
+	}
+	
 	/* THIS FUNCTION ALLOWS US TO SET VARIABLES DYNAMICALLY*/
 	public function SetVariable($var,$value) {
 		echo $var." = ".$value."<br>";
@@ -48,16 +52,16 @@ class NewUser {
 	public function SaveToDb() {
 		if ($this->parameter_check) {
 			$db=$GLOBALS['db'];
-			$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_master
+			$sql="INSERT INTO ".$GLOBALS['database_ref']."user_master
 						(full_name,username,password,identity_number,tel_cellular,tel_home,address,email_address,role_id,date_created)
 						VALUES (
 						'".$this->full_name."',
 						'".$this->username."',
 						'".MD5($this->password)."',
 						'".$this->identity_number."',
-						'".$this->tel_cellular."',
-						'".$this->tel_home."',
-						'".$this->address."',
+						'".@$this->tel_cellular."',
+						'".@$this->tel_home."',
+						'".@$this->address."',
 						'".$this->email_address."',
 						'".$this->DefaultRole()."',
 						sysdate()
@@ -79,7 +83,7 @@ class NewUser {
 		/* GET THE DEFAULT ROLE */
 		$db=$GLOBALS['db'];
 		$sql="SELECT role_id
-					FROM ".$GLOBALS['mysql_db']."role_master
+					FROM ".$GLOBALS['database_ref']."role_master
 					WHERE default_role = 'y'
 					";
 		//echo $sql."<br>";

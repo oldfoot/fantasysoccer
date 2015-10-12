@@ -1,7 +1,7 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
-require_once $dr."include/functions/db/get_col_value.php";
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
+require_once $GLOBALS['dr']."include/functions/db/get_col_value.php";
 
 function LoginBar() {
 	$ui=$GLOBALS['ui'];

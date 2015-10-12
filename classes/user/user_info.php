@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 class UserInfo {
 
@@ -11,7 +11,7 @@ class UserInfo {
 		$sql="SELECT full_name,username,password,identity_number,tel_cellular,tel_home,address,session_id,language,
 					editing_language,date_last_login,email_address,role_id,date_created,count_login,fixture_type_id_last_login,
 					team_name
-					FROM ".$GLOBALS['mysql_db']."user_master um
+					FROM ".$GLOBALS['database_ref']."user_master um
 					WHERE user_id = '".$id."'
 					";
 		//echo $sql."<br>";

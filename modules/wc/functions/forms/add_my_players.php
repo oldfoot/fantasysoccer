@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 /* REQUIRED INCLUDES */
 require_once $GLOBALS['dr']."classes/form/create_form.php";
@@ -17,7 +17,7 @@ function AddMyPlayers() {
 	for ($i=0;$i<count($arr_sys_pos);$i++) {
 
 		$form=new CreateForm;
-		$form->SetCredentials("index.php?module=wc&task=my_team&&jshow=add&subtask=".$v_subtask,"post","add_my_player_".$i,"","500");
+		$form->SetCredentials("index.php?module=wc&task=my_team&&jshow=add&subtask=","post","add_my_player_".$i,"","500");
 		//$form->Header("nuvola/32x32/apps/kcmdf.png","My Players");
 
 		/* GET THE PLAYER IN EACH POSITION */
@@ -37,7 +37,7 @@ function AddMyPlayers() {
 		if ($player_id<1) {
 			$form->ShowDropDown($arr_sys_pos[$i],"player_id","player_name","position_master","player_id",$player_id,"
 						SELECT pm.player_id, pm.player_name, pom.position_name
-						FROM ".$GLOBALS['mysql_db']."player_master pm, ".$GLOBALS['mysql_db']."position_master pom
+						FROM ".$GLOBALS['database_ref']."player_master pm, ".$GLOBALS['database_ref']."position_master pom
 						WHERE pm.position_id = pom.position_id
 						AND pom.position_name = '".$arr_sys_pos[$i]."'
 						","","","onChange=\"document.add_my_player_".$i.".submit();\"","<a href='index.php?module=wc&task=my_team&subtask=del_player&player_id=".$player_id."&jshow=add'>Delete</a>","","200");
@@ -48,7 +48,7 @@ function AddMyPlayers() {
 		/*
 		AND pm.player_id NOT IN (
 						SELECT player_id
-						FROM ".$GLOBALS['mysql_db']."user_team
+						FROM ".$GLOBALS['database_ref']."user_team
 						WHERE user_id = ".$_SESSION['user_id']."
 						AND fixture_type_id = '".$GLOBALS['ws']->GetInfo("fixture_type_id")."'
 					)

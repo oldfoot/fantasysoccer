@@ -47,7 +47,7 @@ class TeamID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT team_name
-					FROM ".$GLOBALS['mysql_db']."team_master
+					FROM ".$GLOBALS['database_ref']."team_master
 					WHERE team_id = '".$this->team_id."'
 					";
 		//echo $sql."<br>";
@@ -76,7 +76,7 @@ class TeamID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."team_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."team_master
 					(team_name)
 					VALUES (
 					'".$this->team_name."'
@@ -106,7 +106,7 @@ class TeamID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."team_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."team_master
 					SET team_name = '".$this->team_name."'
 					WHERE team_id = ".$this->team_id."
 					";
@@ -130,7 +130,7 @@ class TeamID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."team_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."team_master
 					WHERE team_id = ".$this->team_id."
 					";
 		//echo $sql;

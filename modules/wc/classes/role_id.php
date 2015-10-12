@@ -47,7 +47,7 @@ class RoleID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT role_name
-					FROM ".$GLOBALS['mysql_db']."role_master
+					FROM ".$GLOBALS['database_ref']."role_master
 					WHERE role_id = '".$this->role_id."'
 					";
 		//echo $sql."<br>";
@@ -76,7 +76,7 @@ class RoleID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."role_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."role_master
 					(role_name)
 					VALUES (
 					'".$this->role_name."'
@@ -106,7 +106,7 @@ class RoleID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."role_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."role_master
 					SET role_name = '".$this->role_name."'
 					WHERE role_id = ".$this->role_id."
 					";
@@ -130,7 +130,7 @@ class RoleID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."role_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."role_master
 					WHERE role_id = ".$this->role_id."
 					";
 		//echo $sql;

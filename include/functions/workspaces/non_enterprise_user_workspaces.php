@@ -1,11 +1,11 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function ShowWorkSpaceModules($user_id) {
 	$db=$GLOBALS['db'];
 	$sql="SELECT mm.module_id, mm.name
-				FROM ".$GLOBALS['mysql_db']."workspace_user_modules wum, ".$GLOBALS['mysql_db']."module_master mm
+				FROM ".$GLOBALS['database_ref']."workspace_user_modules wum, ".$GLOBALS['database_ref']."module_master mm
 				WHERE wum.user_id = '".$user_id."'
 				AND wum.module_id = mm.module_id
 				";

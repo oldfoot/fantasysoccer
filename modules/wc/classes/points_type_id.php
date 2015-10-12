@@ -47,7 +47,7 @@ class PointsTypeID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT description
-					FROM ".$GLOBALS['mysql_db']."points_type_master
+					FROM ".$GLOBALS['database_ref']."points_type_master
 					WHERE points_type_id = '".$this->points_type_id."'
 					";
 		//echo $sql."<br>";
@@ -76,7 +76,7 @@ class PointsTypeID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."points_type_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."points_type_master
 					(description)
 					VALUES (
 					'".$this->description."'
@@ -106,7 +106,7 @@ class PointsTypeID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."points_type_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."points_type_master
 					SET description = '".$this->description."'
 					WHERE points_type_id = ".$this->points_type_id."
 					";
@@ -130,7 +130,7 @@ class PointsTypeID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."points_type_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."points_type_master
 					WHERE points_type_id = ".$this->points_type_id."
 					";
 		//echo $sql;

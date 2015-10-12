@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function CheckCreateACLTaskExists($role_id,$module,$task,$access="f") {
 
@@ -11,7 +11,7 @@ function CheckCreateACLTaskExists($role_id,$module,$task,$access="f") {
 	$db=$GLOBALS['db'];
 
 	$sql="SELECT 'x'
-				FROM ".$GLOBALS['mysql_db']."role_priv rp
+				FROM ".$GLOBALS['database_ref']."role_priv rp
 				WHERE rp.role_id = ".$role_id."
 				AND rp.module = '".$module."'
 				AND rp.task = '".$task."'
@@ -22,7 +22,7 @@ function CheckCreateACLTaskExists($role_id,$module,$task,$access="f") {
 		return True;
 	}
 	else {
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."role_priv
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."role_priv
 					(role_id,module,task,access)
 					VALUES (
 					".$role_id.",

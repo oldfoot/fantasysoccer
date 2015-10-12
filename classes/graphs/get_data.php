@@ -6,8 +6,7 @@ class GetData {
 
 	function GetData($sql) {
 
-		$db=$GLOBALS['db'];
-		$app_db=$GLOBALS['app_db'];
+		$db=$GLOBALS['db'];		
 		$result = $db->query($sql);
 
 		if ($db->NumRows($result) > 0) {

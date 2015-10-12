@@ -21,7 +21,7 @@ class ChatID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."chat
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."chat
 					(user_id,message,date_sent)
 					VALUES (
 					'".$_SESSION['user_id']."',

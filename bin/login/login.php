@@ -1,11 +1,10 @@
 <?php
-define( '_VALID_SSTARS_', 1 );
+define( '_VALID_DIR_', 1 );
 
 require_once "../../config.php";
-//session_register('sid');
-//session_register('user_id');
-require_once $dr."include/functions/login/verify_user.php";
-require_once $dr."include/functions/db/get_col_value.php";
+
+require_once $GLOBALS['dr']."include/functions/login/verify_user.php";
+require_once $GLOBALS['dr']."include/functions/db/get_col_value.php";
 
 $username=DataEscape($_POST['username']);
 $password=DataEscape($_POST['password']);
@@ -14,7 +13,7 @@ if (VerifyUser($username,$password) == True) {
 	$user_id=GetColumnValue("user_id","user_master","username",$username);
 	$_SESSION['sid']=md5($user_id.microtime());
 	$_SESSION['user_id']=$user_id;
-	$sql="UPDATE ".$GLOBALS['mysql_db']."user_master
+	$sql="UPDATE ".$GLOBALS['database_ref']."user_master
 				SET session_id = '".$_SESSION['sid']."',
 				date_last_login = sysdate(),
 				count_login = count_login +1

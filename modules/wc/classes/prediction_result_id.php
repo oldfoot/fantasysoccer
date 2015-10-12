@@ -44,7 +44,7 @@ class PredictionResultID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT pr.fixture_type_id, pr.team_id
-					FROM ".$GLOBALS['mysql_db']."prediction_results pr
+					FROM ".$GLOBALS['database_ref']."prediction_results pr
 					WHERE pr.prediction_result_id = '".$this->prediction_result_id."'					
 					";
 		//echo $sql."<br>";
@@ -76,7 +76,7 @@ class PredictionResultID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."prediction_results
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."prediction_results
 					(fixture_type_id,team_id)
 					VALUES (
 					'".$this->fixture_type_id."',
@@ -98,11 +98,11 @@ class PredictionResultID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT user_id
-			  FROM ".$GLOBALS['mysql_db']."user_predictions
+			  FROM ".$GLOBALS['database_ref']."user_predictions
 			  WHERE team_id = '".$team_id."' 
 			  AND fixture_type_id = '".$fixture_type_id."'
 			  ";
-		echo $sql."<br>";
+		//echo $sql."<br>";
 		$result = $db->Query($sql);
 		if ($db->NumRows($result) > 0) {
 			while($row = $db->FetchArray($result)) {
@@ -112,7 +112,7 @@ class PredictionResultID {
 				$ti->SetParameters($team_id);
 				$team_name=$ti->GetInfo("team_name");
 				
-				$sql="INSERT INTO ".$GLOBALS['mysql_db']."user_points
+				$sql="INSERT INTO ".$GLOBALS['database_ref']."user_points
 					  (user_id,points,description,points_type,fixture_id,fixture_type_id)
 					  VALUES (
 					  '".$row['user_id']."',					  
@@ -144,7 +144,7 @@ class PredictionResultID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."player_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."player_master
 					SET player_name = '".$this->player_name."',
 					team_id = '".$this->team_id."',
 					position_id = '".$this->position_id."'
@@ -170,7 +170,7 @@ class PredictionResultID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."prediction_results
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."prediction_results
 					WHERE prediction_result_id = ".$this->prediction_result_id."
 					";
 		//echo $sql;
@@ -183,7 +183,7 @@ class PredictionResultID {
 			$team_name=$ti->GetInfo("team_name");
 			$description="Correct prediction for ".$team_name;
 			
-			$sql="DELETE FROM ".$GLOBALS['mysql_db']."user_points
+			$sql="DELETE FROM ".$GLOBALS['database_ref']."user_points
 				  WHERE description = '".$description."'
 				  ";
 			//echo $sql;

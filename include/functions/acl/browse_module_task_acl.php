@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 /* REQUIRED INCLUDES */
 require_once $GLOBALS['dr']."classes/form/create_form.php";
@@ -35,7 +35,7 @@ function BrowseModuleTaskACL($module) {
 		for ($i=1;$i<count($dir_arr);$i++) {
 			/* GRAB ALL THE ROLES SINCE WE DO NOT SIMPLY UPDATE WHATEVER CAME FROM THE FORM */
 			$sql="SELECT wrm.role_id,wrm.role_name
-						FROM ".$GLOBALS['mysql_db']."role_master wrm
+						FROM ".$GLOBALS['database_ref']."role_master wrm
 						ORDER BY wrm.role_name
 						";
 			//echo $sql."<br>";
@@ -46,7 +46,7 @@ function BrowseModuleTaskACL($module) {
 					if (ISSET($_POST[$post_var]) && $_POST[$post_var]=="y") { $access="t"; } else { $access="f"; }
 					/* SINCE NEW TASKS AND ROLES CAN BE ADDED WE MAKE SURE THE RECORD EXISTS */
 					CheckCreateACLTaskExists($row['role_id'],$module,$dir_arr[$i]);
-					$sql="UPDATE ".$GLOBALS['mysql_db']."role_priv
+					$sql="UPDATE ".$GLOBALS['database_ref']."role_priv
 								SET access = '".$access."'
 								WHERE role_id = ".$row['role_id']."
 								AND module = '".$module."'
@@ -69,7 +69,7 @@ function BrowseModuleTaskACL($module) {
 	  	$c.="</tr>\n";
 	  	/* DISPLAY ALL THE ROLES*/
 	  	$sql="SELECT wrm.role_id,wrm.role_name
-						FROM ".$GLOBALS['mysql_db']."role_master wrm
+						FROM ".$GLOBALS['database_ref']."role_master wrm
 						ORDER BY wrm.role_name
 						";
 			//echo $sql."<br>";

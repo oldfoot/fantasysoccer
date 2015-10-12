@@ -47,7 +47,7 @@ class FixtureTypeID {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT type_name, date_start, date_end, prediction_allow, prediction_total, max_replacements
-					FROM ".$GLOBALS['mysql_db']."fixture_type_master
+					FROM ".$GLOBALS['database_ref']."fixture_type_master
 					WHERE fixture_type_id = '".$this->fixture_type_id."'
 					";
 		//echo $sql."<br>";
@@ -79,7 +79,7 @@ class FixtureTypeID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."fixture_type_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."fixture_type_master
 					(type_name,date_start,date_end,prediction_allow,prediction_total)
 					VALUES (
 					'".$this->type_name."',
@@ -111,7 +111,7 @@ class FixtureTypeID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."fixture_type_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."fixture_type_master
 					SET type_name = '".$this->type_name."',
 					date_start = '".$this->date_start."',
 					date_end = '".$this->date_end."',
@@ -139,7 +139,7 @@ class FixtureTypeID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."fixture_type_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."fixture_type_master
 					WHERE fixture_type_id = ".$this->fixture_type_id."
 					";
 		//echo $sql;

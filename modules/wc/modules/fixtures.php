@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once $GLOBALS['dr']."modules/wc/classes/fixture_id.php";
 
@@ -34,7 +34,7 @@ function LoadTask() {
 		}
 		elseif ($_GET['subtask']=="reset") {
 			$fti->SetParameters($_GET['fixture_id']);
-			$result=$fti->Reset($_POST['fixture_id']);
+			$result=$fti->Reset($_GET['fixture_id']);
 			if (!$result) {	echo $fti->ShowErrors();	} else { echo "Success"; }
 		}
 	}
@@ -43,7 +43,7 @@ function LoadTask() {
 
 	$tab_array=array("browse","add","fixture_history");
 	$tb=new TabBoxes;
-	$c.=$tb->DrawBoxes($tab_array,$dr."modules/wc/modules/fixtures/");
+	$c.=$tb->DrawBoxes($tab_array,$GLOBALS['dr']."modules/wc/modules/fixtures/");
 
 	if (ISSET($_GET['subtask']) && $_GET['subtask'] == "edit" && ISSET($_GET['fixture_id'])) {
 		$c.=$tb->BlockShow("add");

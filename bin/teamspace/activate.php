@@ -1,10 +1,10 @@
 <?php
 header("Pragma: no-cache");
 
-define( '_VALID_SSTARS_', 1 );
+define( '_VALID_DIR_', 1 );
 
 require_once "../../config.php";
-require_once $dr."include/functions/db/row_exists.php";
+require_once $GLOBALS['dr']."include/functions/db/row_exists.php";
 $teamspace_id=DataEscape($_GET['teamspace_id']);
 $workspace_id=$ui->WorkspaceID();
 /*

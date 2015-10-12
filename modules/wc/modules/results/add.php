@@ -1,12 +1,12 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once $GLOBALS['dr']."modules/wc/functions/forms/add_results.php";
 
 function Add() {
 
-	/*
+	
 	if (ISSET($_GET['subtask']) && $_GET['subtask']=="edit" && ISSET($_GET['fixture_id']) && IS_NUMERIC($_GET['fixture_id'])) {
 		$fixture_id=$_GET['fixture_id'];
 		require_once $GLOBALS['dr']."modules/wc/classes/fixture_id.php";
@@ -24,10 +24,10 @@ function Add() {
 		$date_fixture="";
 		$fixture_type_id="";
 	}
-	*/
+	
 	/* FORM TO ADD TEAM */
-	return CurveBox(AddResults($_GET['fixture_id'],
-									$_POST['goals_team_1'],$_POST['yellow_cards_team_1'],$_POST['red_cards_team_1'],$_POST['hatricks_team_1'],
-									$_POST['goals_team_2'],$_POST['yellow_cards_team_2'],$_POST['red_cards_team_2'],$_POST['hatricks_team_2']));
+	return CurveBox(AddResults(@$_GET['fixture_id'],
+									@$_POST['goals_team_1'],@$_POST['yellow_cards_team_1'],@$_POST['red_cards_team_1'],@$_POST['hatricks_team_1'],
+									@$_POST['goals_team_2'],@$_POST['yellow_cards_team_2'],@$_POST['red_cards_team_2'],@$_POST['hatricks_team_2']));
 }
 ?>

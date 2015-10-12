@@ -1,8 +1,8 @@
 <?php
 require_once "../../config.php";
-require_once $dr."/include/functions/get_user_id.php";
-require_once $dr."/include/functions/password/forgot_exists.php";
-require_once $dr."/include/functions/password/add_forgot.php";
+require_once $GLOBALS['dr']."/include/functions/get_user_id.php";
+require_once $GLOBALS['dr']."/include/functions/password/forgot_exists.php";
+require_once $GLOBALS['dr']."/include/functions/password/add_forgot.php";
 
 $email_address=DataEscape($_POST['email_address']);
 /* WE'VE GOT A VALUE */

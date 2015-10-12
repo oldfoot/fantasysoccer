@@ -17,7 +17,7 @@ class UserSettings {
 	/* SAVE TO THE DATABASE */
 	public function Modify() {
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."user_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."user_master
 					SET team_name = '".$this->team_name."',
 					email_address = '".$this->email_address."',
 					tel_cellular = '".$this->tel_cellular."',

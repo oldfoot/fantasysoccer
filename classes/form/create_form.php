@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once $GLOBALS['dr']."include/functions/date_time/jcalendar.php";
 
@@ -92,7 +92,7 @@ class CreateForm {
 			$this->form.="<td>";
 			$this->form.="<nobr><input type='text' name='".$name_from."' id='".$name_from."' value='".$name_from_val."' size='10' class='inputstyle'>\n";
 			/* FOR MOBILE DON'T SHOW THE JCALENDAR */
-			if (!defined( '_VALID_SSTARS__MOBILE_' )) {
+			if (!defined( '_VALID_DIR__MOBILE_' )) {
 				$this->form.=JCalendar($name_from,$name_from."_id");
 			}
 			else {
@@ -166,7 +166,7 @@ class CreateForm {
 		$db=$GLOBALS['db'];
 	 	if (EMPTY($sql)) {
 		 	$sql="SELECT DISTINCT $f1 as $f1, $f2 as $f2
-		 	      FROM ".$GLOBALS['mysql_db']."$tb
+		 	      FROM ".$GLOBALS['database_ref']."$tb
 		 	      $sql_extra
 		 	      ORDER BY $f2";
 		}

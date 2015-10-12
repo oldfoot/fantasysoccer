@@ -1,12 +1,12 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function EnterpriseUserTeamspaces($user_id,$workspace_id,$teamspace_id,$pos) {
 	$db=$GLOBALS['db'];
-	$dr=$GLOBALS['dr'];
+	$GLOBALS['dr']=$GLOBALS['dr'];
 	$sql="SELECT mm.name, mm.dashboard_filename
-				FROM ".$GLOBALS['mysql_db']."teamspace_user_modules tum, ".$GLOBALS['mysql_db']."module_master mm
+				FROM ".$GLOBALS['database_ref']."teamspace_user_modules tum, ".$GLOBALS['database_ref']."module_master mm
 				WHERE tum.user_id = '".$user_id."'
 				AND tum.workspace_id = '".$workspace_id."'
 				AND tum.teamspace_id = '".$teamspace_id."'
@@ -20,7 +20,7 @@ function EnterpriseUserTeamspaces($user_id,$workspace_id,$teamspace_id,$pos) {
 		if ($db->NumRows($result) > 0) {
 			while($row = $db->FetchArray($result)) {
 				echo "<tr>\n";
-				$dashboard_file=$dr."modules/".$row['name']."/dashboard/".$row['dashboard_filename'].".php";
+				$dashboard_file=$GLOBALS['dr']."modules/".$row['name']."/dashboard/".$row['dashboard_filename'].".php";
 				//echo $dashboard_file;
 				if (file_exists($dashboard_file)) {
 					echo "<td>";

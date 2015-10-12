@@ -53,8 +53,8 @@ class Points {
 		$db=$GLOBALS['db'];
 
 		$sql="SELECT pm.points, ftm.type_name, pom.position_name, ptm.description
-					FROM ".$GLOBALS['mysql_db']."points_master pm, ".$GLOBALS['mysql_db']."fixture_type_master ftm, 
-					".$GLOBALS['mysql_db']."position_master pom, ".$GLOBALS['mysql_db']."points_type_master ptm
+					FROM ".$GLOBALS['database_ref']."points_master pm, ".$GLOBALS['database_ref']."fixture_type_master ftm, 
+					".$GLOBALS['database_ref']."position_master pom, ".$GLOBALS['database_ref']."points_type_master ptm
 					WHERE pm.fixture_type_id = ".$this->fixture_type_id."
 					AND pm.position_id = ".$this->position_id."
 					AND pm.points_type_id = ".$this->points_type_id."
@@ -87,7 +87,7 @@ class Points {
 		
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."points_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."points_master
 					(points,fixture_type_id,position_id,points_type_id)
 					VALUES (
 					'".$this->points."',
@@ -118,7 +118,7 @@ class Points {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."fixture_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."fixture_master
 					SET team_id_1 = '".$this->team_id_1."',
 					team_id_2 = '".$this->team_id_2."',
 					date_fixture = '".$this->date_fixture."',
@@ -145,7 +145,7 @@ class Points {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."points_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."points_master
 					WHERE fixture_type_id = ".$this->fixture_type_id."
 					AND position_id = ".$this->position_id."
 					AND points_type_id = ".$this->points_type_id."

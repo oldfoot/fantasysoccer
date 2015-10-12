@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 class WorkspaceInfo {
 
@@ -10,7 +10,7 @@ class WorkspaceInfo {
 
 		$sql="SELECT wm.name, wm.description, wm.max_teamspaces, wm.max_size, wm.max_users, wm.available_start_date,
 					wm.available_end_date, wm.status_id, wm.is_default, wm.enterprise
-					FROM ".$GLOBALS['mysql_db']."workspace_master wm
+					FROM ".$GLOBALS['database_ref']."workspace_master wm
 					WHERE workspace_id = '".$id."'
 					";
 		//echo $sql."<br>";

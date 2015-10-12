@@ -37,7 +37,7 @@ class session
     public function read($id) {
 
         $id = @mysql_real_escape_string($id);
-        $sql = sprintf("SELECT `SessionData` FROM `".$GLOBALS['mysql_table_prefix']."core_sessions1` " .
+        $sql = sprintf("SELECT `SessionData` FROM `".$GLOBALS['mysql_table_prefix']."sessions` " .
                        "WHERE SessionID = '%s'", $id);
         //echo $sql;
 		if ($result = @mysql_query($sql, $this->_sess_db)) {
@@ -57,11 +57,11 @@ class session
      */
     public function write($id, $data) {
 
-        $sql = sprintf("REPLACE INTO `".$GLOBALS['mysql_table_prefix']."core_sessions1` VALUES('%s', '%s', sysdate())",
+        $sql = sprintf("REPLACE INTO `".$GLOBALS['mysql_table_prefix']."sessions` VALUES('%s', '%s', sysdate())",
                        @mysql_real_escape_string($id),
                        @mysql_real_escape_string($data),
                        @mysql_real_escape_string(time()));
-		//echo $sql;
+		echo $sql;
         return @mysql_query($sql, $this->_sess_db);
 
     }
@@ -73,7 +73,7 @@ class session
      */
     public function destroy($id) {
 
-        $sql = sprintf("DELETE FROM `".$GLOBALS['mysql_table_prefix']."core_sessions1` WHERE `SessionID` = '%s'", $id);
+        $sql = sprintf("DELETE FROM `".$GLOBALS['mysql_table_prefix']."sessions` WHERE `SessionID` = '%s'", $id);
         return mysql_query($sql, $this->_sess_db);
 
 }
@@ -90,7 +90,7 @@ class session
      */
     public function gc($max) {
 
-        $sql = sprintf("DELETE FROM `".$GLOBALS['mysql_table_prefix']."core_sessions1` WHERE `SessionTime` < '%s'",
+        $sql = sprintf("DELETE FROM `".$GLOBALS['mysql_table_prefix']."sessions` WHERE `SessionTime` < '%s'",
                        mysql_real_escape_string(time() - $max));
         return mysql_query($sql, $this->_sess_db);
 

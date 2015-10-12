@@ -7,6 +7,10 @@ require_once $GLOBALS['dr']."include/functions/db/row_exists.php";
 
 class PlayerID {
 
+	public function __construct() {
+		$this->errors = "";
+	}
+
 	/* THIS FUNCTION ALLOWS US TO SET VARIABLES DYNAMICALLY*/
 	public function SetVariable($var,$value) {
 		//echo $var." = ".$value."<br>";
@@ -48,7 +52,7 @@ class PlayerID {
 
 		$sql="SELECT pm.player_name, pm.team_id, pm.position_id,
 					tm.team_name, tm.logo_location,pom.position_name
-					FROM ".$GLOBALS['mysql_db']."player_master pm,".$GLOBALS['mysql_db']."team_master tm,".$GLOBALS['mysql_db']."position_master pom
+					FROM ".$GLOBALS['database_ref']."player_master pm,".$GLOBALS['database_ref']."team_master tm,".$GLOBALS['database_ref']."position_master pom
 					WHERE pm.player_id = '".$this->player_id."'
 					AND pm.team_id = tm.team_id
 					AND pm.position_id = pom.position_id
@@ -69,7 +73,10 @@ class PlayerID {
 
 	/* GET ANY OF THE VARIABLES IN THE CLASS */
 	public function GetInfo($v) {
-		return $this->$v;
+		if (isset($this->$v)) {
+			return $this->$v;
+		}
+		return false;
 	}
 
 	/* ADD TO THE DATABASE */
@@ -86,7 +93,7 @@ class PlayerID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."player_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."player_master
 					(player_name,team_id,position_id)
 					VALUES (
 					'".$this->player_name."',
@@ -120,7 +127,7 @@ class PlayerID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."player_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."player_master
 					SET player_name = '".$this->player_name."',
 					team_id = '".$this->team_id."',
 					position_id = '".$this->position_id."'
@@ -146,7 +153,7 @@ class PlayerID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."player_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."player_master
 					WHERE player_id = ".$this->player_id."
 					";
 		//echo $sql;

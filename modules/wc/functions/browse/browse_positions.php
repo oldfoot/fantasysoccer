@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once($GLOBALS['dr']."classes/form/show_results.php");
 
@@ -11,7 +11,7 @@ function BrowsePositions() {
 	$sr->DrawFriendlyColHead(array("","Position Name","Edit","Delete")); /* COLS */
 	$sr->Columns(array("position_id","position_name","edit","del"));
 	$sr->Query("SELECT position_id, position_name,'edit' AS edit,'delete' AS del
-							FROM ".$GLOBALS['mysql_db']."position_master
+							FROM ".$GLOBALS['database_ref']."position_master
 							ORDER BY position_name");
 
 	for ($i=0;$i<$sr->CountRows();$i++) {

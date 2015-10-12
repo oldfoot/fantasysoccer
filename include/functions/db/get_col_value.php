@@ -1,14 +1,13 @@
 <?php
 /* ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function GetColumnValue($col,$tb,$whr,$val,$extra="") {
 
-	$db=$GLOBALS['db'];
-	$app_db=$GLOBALS['app_db'];
+	$db=$GLOBALS['db'];	
 
 	$sql="SELECT $col
-				FROM ".$GLOBALS['mysql_db']."$tb
+				FROM ".$GLOBALS['database_ref']."$tb
 				WHERE $whr = '".$val."'
 				$extra
 				";

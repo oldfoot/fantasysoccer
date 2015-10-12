@@ -7,6 +7,10 @@ require_once $GLOBALS['dr']."include/functions/db/row_exists.php";
 
 class FixtureID {
 
+	public function __construct() {
+		$this->errors = "";
+	}
+
 	/* THIS FUNCTION ALLOWS US TO SET VARIABLES DYNAMICALLY*/
 	public function SetVariable($var,$value) {
 		//echo $var." = ".$value."<br>";
@@ -48,7 +52,7 @@ class FixtureID {
 
 		$sql="SELECT fm.team_id_1,fm.team_id_2,fm.date_fixture, fm.fixture_type_id,
 					tm1.team_name AS team_name1,tm2.team_name AS team_name2
-					FROM ".$GLOBALS['mysql_db']."fixture_master fm, ".$GLOBALS['mysql_db']."team_master tm1, ".$GLOBALS['mysql_db']."team_master tm2
+					FROM ".$GLOBALS['database_ref']."fixture_master fm, ".$GLOBALS['database_ref']."team_master tm1, ".$GLOBALS['database_ref']."team_master tm2
 					WHERE fm.fixture_id = ".$this->fixture_id."
 					AND fm.team_id_1 = tm1.team_id
 					AND fm.team_id_2 = tm2.team_id
@@ -84,7 +88,7 @@ class FixtureID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="INSERT INTO ".$GLOBALS['mysql_db']."fixture_master
+		$sql="INSERT INTO ".$GLOBALS['database_ref']."fixture_master
 					(team_id_1,team_id_2,date_fixture,fixture_type_id)
 					VALUES (
 					'".$this->team_id_1."',
@@ -115,7 +119,7 @@ class FixtureID {
 
 		/* ADD */
 		$db=$GLOBALS['db'];
-		$sql="UPDATE ".$GLOBALS['mysql_db']."fixture_master
+		$sql="UPDATE ".$GLOBALS['database_ref']."fixture_master
 					SET team_id_1 = '".$this->team_id_1."',
 					team_id_2 = '".$this->team_id_2."',
 					date_fixture = '".$this->date_fixture."',
@@ -142,7 +146,7 @@ class FixtureID {
 
 		/* DELETE */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."fixture_master
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."fixture_master
 					WHERE fixture_id = ".$this->fixture_id."
 					";
 		//echo $sql;
@@ -165,7 +169,7 @@ class FixtureID {
 
 		/* DELETE USER POINTS */
 		$db=$GLOBALS['db'];
-		$sql="DELETE FROM ".$GLOBALS['mysql_db']."user_points
+		$sql="DELETE FROM ".$GLOBALS['database_ref']."user_points
 					WHERE fixture_id = ".$this->fixture_id."
 					";
 		//echo $sql;
@@ -173,7 +177,7 @@ class FixtureID {
 		if ($db->AffectedRows($result) > 0) {
 
 			/* DELETE RESULT */
-			$sql1="UPDATE ".$GLOBALS['mysql_db']."fixture_master SET
+			$sql1="UPDATE ".$GLOBALS['database_ref']."fixture_master SET
 					goals_team_1 = null,
 					goals_team_2 = null,
 					yellow_cards_team_1 = null,

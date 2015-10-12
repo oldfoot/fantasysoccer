@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once($GLOBALS['dr']."classes/form/show_results.php");
 
@@ -14,8 +14,8 @@ function BrowseFixtures() {
 							tm1.team_name as team_name_1,tm2.team_name as team_name_2,
 							ftm.type_name,
 							'results' as results, 'reset_results' as reset_results, 'edit' AS edit,'delete' AS del
-							FROM ".$GLOBALS['mysql_db']."fixture_master fm, ".$GLOBALS['mysql_db']."team_master tm1,
-							".$GLOBALS['mysql_db']."team_master tm2, ".$GLOBALS['mysql_db']."fixture_type_master ftm
+							FROM ".$GLOBALS['database_ref']."fixture_master fm, ".$GLOBALS['database_ref']."team_master tm1,
+							".$GLOBALS['database_ref']."team_master tm2, ".$GLOBALS['database_ref']."fixture_type_master ftm
 							WHERE fm.team_id_1 = tm1.team_id
 							AND fm.team_id_2 = tm2.team_id
 							AND fm.fixture_type_id = ftm.fixture_type_id

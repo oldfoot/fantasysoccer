@@ -1,7 +1,7 @@
 <?php
 header("Pragma: no-cache");
 
-define( '_VALID_SSTARS_', 1 );
+define( '_VALID_DIR_', 1 );
 
 require_once "../../config.php";
 $sql="UPDATE ".$mysql_table_prefix."user_master

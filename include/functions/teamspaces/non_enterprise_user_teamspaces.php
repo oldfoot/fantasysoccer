@@ -1,11 +1,11 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function ShowTeamSpaceModules($teamspace_id, $user_id) {
 	$db=$GLOBALS['db'];
 	$sql="SELECT mm.module_id, mm.name
-				FROM ".$GLOBALS['mysql_db']."teamspace_user_modules tum, ".$GLOBALS['mysql_db']."module_master mm
+				FROM ".$GLOBALS['database_ref']."teamspace_user_modules tum, ".$GLOBALS['database_ref']."module_master mm
 				WHERE tum.teamspace_id = '".$teamspace_id."'
 				AND tum.module_id = mm.module_id
 				";

@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once $GLOBALS['dr']."classes/form/create_form.php";
 
@@ -10,13 +10,13 @@ function LoadTask() {
 
 	$c="";
 
-	/*
+	
 	if (ISSET($_GET['subtask'])) {
 		
 		if ($_GET['subtask']=="save") {
 			$db=$GLOBALS['db'];
 			$sql="SELECT fixture_type_id, type_name, prediction_total
-						FROM ".$GLOBALS['mysql_db']."fixture_type_master
+						FROM ".$GLOBALS['database_ref']."fixture_type_master
 						WHERE prediction_allow = 'y'
 						ORDER BY ordering
 						";
@@ -48,7 +48,7 @@ function LoadTask() {
 			}
 		}
 	}
-	*/
+	
 
 	/*
 	$c.="<table class='plain' width='100%'>\n";
@@ -61,7 +61,7 @@ function LoadTask() {
 	/* GET ALL THE STAGES AND LOOP THEM */
 	$db=$GLOBALS['db'];
 	$sql="SELECT fixture_type_id, type_name, prediction_total
-				FROM ".$GLOBALS['mysql_db']."fixture_type_master
+				FROM ".$GLOBALS['database_ref']."fixture_type_master
 				WHERE prediction_allow = 'y'
 				ORDER BY ordering
 				";
@@ -75,12 +75,12 @@ function LoadTask() {
 			$form->SetCredentials("index.php?module=wc&task=my_predictions&subtask=save","post","add_my_prediction_".$row['fixture_type_id']);
 			$v_extra_cell="Your selection:<br>";
 			$v_extra_cell.=$up->GetTeamPredictions($row['fixture_type_id']);
-			$form->ShowDropDown($row['type_name'],"team_id","team_name","team_master","team_id_".$row['fixture_type_id'],$team_id,"
+			$form->ShowDropDown($row['type_name'],"team_id","team_name","team_master","team_id_".$row['fixture_type_id'],"","
 					SELECT tm.team_id, tm.team_name
-					FROM ".$GLOBALS['mysql_db']."team_master tm
+					FROM ".$GLOBALS['database_ref']."team_master tm
 					WHERE tm.team_id NOT IN (
 						SELECT team_id
-						FROM ".$GLOBALS['mysql_db']."user_predictions
+						FROM ".$GLOBALS['database_ref']."user_predictions
 						WHERE user_id = ".$_SESSION['user_id']."
 						AND fixture_type_id = '".$row['fixture_type_id']."'
 					)

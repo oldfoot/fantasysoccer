@@ -1,6 +1,6 @@
 <?php
 /* THIS ENSURES WE ARE ABLE TO CONTROL OUR INCLUDE FILES */
-define( '_VALID_SSTARS_', 1 );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 function Language($lookup_code,$language,$edit_mode="n") {
 	$language=$GLOBALS['language'];

@@ -1,6 +1,6 @@
 <?php
 /** ensure this file is being included by a parent file */
-defined( '_VALID_SSTARS_' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_VALID_DIR_' ) or die( 'Direct Access to this location is not allowed.' );
 
 require_once($GLOBALS['dr']."classes/form/show_results.php");
 require_once($GLOBALS['dr']."modules/wc/classes/fixture_id.php");
@@ -15,7 +15,7 @@ function BrowseMyPoints() {
 			$c.="<td colspan='3'>Your points</td>\n";
 		$c.="</tr>\n";
 		$sql="SELECT up.points, up.description, up.points_type, up.fixture_id, up.fixture_type_id
-					FROM ".$GLOBALS['mysql_db']."user_points up
+					FROM ".$GLOBALS['database_ref']."user_points up
 					WHERE user_id = ".$_SESSION['user_id']."
 					ORDER BY up.fixture_id DESC, up.points DESC
 					";
